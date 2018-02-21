@@ -1,4 +1,5 @@
-const rootReducer = (state = {}, action) => {
+
+export default function reducer(state = {}, action = {}) {
     switch (action.type) {
         case 'SET_TEAMS':
           return { 
@@ -9,4 +10,8 @@ const rootReducer = (state = {}, action) => {
       }
 }
 
-export default rootReducer
+export const setTeams = (teams) => (
+  {
+    type: 'SET_TEAMS',
+    teams
+  })

@@ -48,7 +48,7 @@
     border:3px solid #d0d0d0;
   }
   
-  .card-player-online-section{
+  .card-team-online-section{
     position: absolute;
     bottom: 0;
     left:0;
@@ -59,7 +59,7 @@
     border-top:5px solid #47db34;
   }
   
-  .card-player-online-section span{
+  .card-team-online-section span{
     font-size: x-large;
     color: #1c1c1c;
   }
@@ -92,12 +92,12 @@
         display: none;
     }
   
-    .card-container .card-player-online-section{
+    .card-container .card-team-online-section{
         height:35px;
         line-height: 35px;
     }
   
-    .card-container .card-player-online-section span{
+    .card-container .card-team-online-section span{
         font-size: 90%;
     }
   
@@ -146,18 +146,18 @@
         display: none;
     }
   
-    .team-card .card-player-online-section{
+    .team-card .card-team-online-section{
         height:25px;
         line-height: 25px;
         
     }
   
-    .card-container .card-player-online-section{
+    .card-container .card-team-online-section{
         font-size: 100%;
         background-color: rgb(255,255,255,0) !important;
         border-top:none !important;
     }
-    .card-container .card-player-online-section span{
+    .card-container .card-team-online-section span{
         color:white !important;
     }
   
@@ -178,11 +178,11 @@
   .show-grid{
     margin-bottom: 40px;
   }
-  
-  h3{
-    color: #2a991b !important;
+
+  .team-name{
+    color: #2a991b !important;  
   }
-  
+    
   h4{
     color:white !important;
     padding:0px !important;

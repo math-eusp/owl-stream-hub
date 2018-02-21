@@ -4,30 +4,35 @@ import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 
-import TeamCards from '../../components/TeamCards'
+import PlayerCards from '../../components/PlayerCards'
 class Team extends Component {
-  
+
+
   componentWillMount(){
-    console.log(this.props)
-    
+    const parsedURLParams = queryString.parse(this.props.location.search);
+    this.setState({
+      ...parsedURLParams
+    })
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.props = nextProps
+    let team = _.find(this.props.teams, team => { console.log(this.state.id,team.id); return team.id == this.state.id })
+    this.setState({
+      team
+    })
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Overwatch league streamers hub</h1>
-        </header>
-        <div className="App-intro">
-            <div className="col-md-12 mt-5">
-              <div className="row">
-              {this.props.teams.map((team,index) => {
-                  return <TeamCards key={index} team={team} />
-              })}
-              </div>
-            </div>
+        <div className="col-md-12 mt-5">
+          <img src={this.state.team ? this.state.team.logo : ''}  className="img-fluid" style={{width: '20%'}}/>
+          <div className="row">
+          {this.state.team && this.state.team.players.map((obj,index) => {
+              return <PlayerCards key={index} player={obj.player} team={this.state.team}/>
+          })}
+          </div>
         </div>
-      </div>
     );
   }
 }

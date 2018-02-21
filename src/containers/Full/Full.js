@@ -3,7 +3,7 @@ import { Switch, Redirect, Route } from 'react-router-dom'
 import * as _ from 'lodash';
 import request from 'request'
 import { connect } from 'react-redux';
-import { setTeams } from '../../actions/owl'
+import { setTeams } from '../../reducers/owl'
 
 import Home from '../../views/Home/'
 import Team from '../../views/Team/'
@@ -37,14 +37,17 @@ class Full extends Component {
 
   render() {
     return (
-      <div className="app">
-        <div className="app-body">
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Overwatch league streamers hub</h1>
+          <a href="/"><img src='../img/owl.png' className="rounded mx-auto d-block" style={{width: '10%'}}/></a>
+        </header>
+        <div className="App-intro">
           <main className="main">            
             <div className="container">
               <Switch>
+                <Route path="/team" name="Team" component={Team}/>
                 <Route path="/" name="Home" component={Home}/>
-                <Route path="/Team" name="Team" component={Team}/>
-                <Redirect from="/" to="/"/>
               </Switch>
             </div>
           </main>

@@ -56,7 +56,6 @@
     height:auto;
     padding-top:5px; 
     background-color: #d0d0d0;
-    border-top:5px solid #47db34;
   }
   
   .card-player-online-section span{
@@ -179,9 +178,6 @@
     margin-bottom: 40px;
   }
   
-  h3{
-    color: #2a991b !important;
-  }
   
   h4{
     color:white !important;
