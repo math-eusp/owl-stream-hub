@@ -1,0 +1,7 @@
+@font-face{
+    font-family:overwatch;
+    src:url(public/fonts/bignoodletoo.54f32a53.ttf)
+}
+body{
+    font-family:overwatch!important
+}
