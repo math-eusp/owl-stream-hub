@@ -8,6 +8,7 @@ import { setTeams } from '../../reducers/owl'
 import Home from '../../views/Home/'
 import Team from '../../views/Team/'
 
+const config = require("../../config.json");
 
 let owlTeams = []
 class Full extends Component {
@@ -15,6 +16,7 @@ class Full extends Component {
   constructor(props){
     super(props)
     this.getTeams = this.getTeams.bind(this)
+    this.checkStreams = this.checkStreams.bind(this)
   }
 
   componentDidMount(){
@@ -28,11 +30,36 @@ class Full extends Component {
       }else{
         let data = JSON.parse(body);
         _.forEach(data.competitors, team => {
-          owlTeams.push(team.competitor)
+          let fixedTeam = this.checkStreams(team.competitor)
+          owlTeams.push(fixedTeam)
         })        
       }
       this.props.setTeams(owlTeams)
     })
+  }
+
+  checkStreams(team){
+
+    let owlUsers = []
+     _.forEach(team.players, obj => {
+      let twitch = _.find(obj.player.accounts, acc => acc.accountType == 'TWITCH');
+      if(twitch){
+        owlUsers.push( _.last(twitch.value.split("/")))
+      }
+    })
+    console.log(owlUsers)
+    if(owlUsers.length >0 ){
+      let options = {
+        url: "https://api.twitch.tv/helix/streams?type=live&user_login=overwatchleague",
+        headers: {
+          'Client-ID': config.clientId
+        },      
+      }
+      request(options, (error, response, body) => {
+        console.log(JSON.parse(body))
+      })
+    }
+    return team
   }
 
   render() {

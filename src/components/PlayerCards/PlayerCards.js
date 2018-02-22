@@ -4,15 +4,18 @@ import './PlayerCards.css';
 
 class PlayerCards extends Component {
   render() {
+    let teamColor = _.head(this.props.team.content.colors).color.color;
     return (
-        <div className="col-md-3 col-sm-6 col-xs-4" style={{marginBottom: '20px'}}>
-            <a href={`/stream/${this.props.player.id}/${this.props.player.name}/`}>
-                <div className="outer-container" style={{opacity: 1}}>
-                    <div className="card-container">
-                        <div className="team-card" style={{backgroundImage: `url('${this.props.player.headshot}')`, filter: 'grayscale(100%)'}}></div>
-                        <div className="card-player-online-section" style={{borderTop: `5px solid ${_.head(this.props.team.content.colors).color.color}`}}>
-                            <h3 style={{padding: '0px; color: rgb(0, 102, 170)',margin: '0px', color: _.head(this.props.team.content.colors).color.color, filter: 'brightness(50%)'}}>{this.props.player.name}</h3>
-                            <span style={{color: 'rgb(28, 28, 28)'}}>OFFLINE</span>
+        <div className="col-lg-2 col-md-3 col-sm-4 col-xs-6" style={{marginBottom: '20px'}}>
+            <a href={`/twitch?id=${this.props.player.id}`}>
+                <div className="player-card">
+                    <div className="player-headshot" style={{backgroundImage: `url('${this.props.player.headshot}')`, filter: 'grayscale(100%)'}}></div>
+                    <div className="player-data">
+                        <div className="card-player-section" style={{borderTop: `5px solid ${teamColor}`}}>
+                            <div className="player-name-font" style={{color: teamColor, filter: 'brightness(50%)'}}>
+                                {this.props.player.name}
+                            </div>
+                            <span style={{color: 'black'}}>Offline</span>
                         </div>
                     </div>
                 </div>
@@ -23,3 +26,4 @@ class PlayerCards extends Component {
 }
 
 export default PlayerCards;
+
