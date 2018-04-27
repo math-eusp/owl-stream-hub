@@ -4,9 +4,14 @@ import * as _ from 'lodash';
 import request from 'request'
 import { connect } from 'react-redux';
 import { setTeams } from '../../reducers/owl'
+import axios from 'axios'
 
 import Home from '../../views/Home/'
 import Team from '../../views/Team/'
+import Twitch from '../../views/Twitch/'
+
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 
 const config = require("../../config.json");
 
@@ -15,8 +20,13 @@ class Full extends Component {
 
   constructor(props){
     super(props)
+    this.updateHandle;
+    this.updateTime = 3000;
     this.getTeams = this.getTeams.bind(this)
-    this.checkStreams = this.checkStreams.bind(this)
+    this.setTeam = this.setTeam.bind(this)
+    this.state = {
+      blocking: true,
+    };
   }
 
   componentDidMount(){
@@ -24,43 +34,52 @@ class Full extends Component {
   }
 
   async getTeams(){
-    await request('https://api.overwatchleague.com/teams?expand=team.content', (error, response, body) => {
+    await request('https://api.overwatchleague.com/v2/teams?expand=team.content', (error, response, body) => {
       if(error){
         console.log(`Error: ${error}`);
       }else{
-        let data = JSON.parse(body);
-        _.forEach(data.competitors, team => {
-          let fixedTeam = this.checkStreams(team.competitor)
-          owlTeams.push(fixedTeam)
-        })        
+        let dataRes = JSON.parse(body);
+        dataRes.data.map(async team => {
+           this.checkStream(team).then(obj => {
+              owlTeams.push(team);
+           })
+        })
       }
-      this.props.setTeams(owlTeams)
+    })
+    setTimeout(() => {
+      this.setTeam();
+    }, this.updateTime);
+  }
+
+  setTeam(){
+    this.props.setTeams(owlTeams)
+    this.setState({
+      blocking: false
     })
   }
 
-  checkStreams(team){
+  componentWillUnmount(){
+    clearInterval(this.updateHandle);
+  }
 
-    let owlUsers = []
-     _.forEach(team.players, obj => {
-      let twitch = _.find(obj.player.accounts, acc => acc.accountType == 'TWITCH');
-      if(twitch){
-        owlUsers.push( _.last(twitch.value.split("/")))
-      }
-    })
-    console.log(owlUsers)
-    if(owlUsers.length >0 ){
-      let options = {
-        url: "https://api.twitch.tv/helix/streams?type=live&user_login=overwatchleague",
-        headers: {
-          'Client-ID': config.clientId
-        },      
-      }
-      request(options, (error, response, body) => {
-        console.log(JSON.parse(body))
+  async checkStream(checkTeam){
+      let owlPlayers = []
+      checkTeam.players.map(async obj => {
+          let twitch = _.find(obj.accounts, acc => acc.type == 'TWITCH');
+          if(twitch){
+              const userName = _.last(twitch.url.split("/"))
+              let headerConfig = {
+                  headers: {'Client-ID': config.clientId},
+                };
+              let response = await axios.get("https://api.twitch.tv/kraken/streams/"+userName,headerConfig)
+              obj.streamStats = response.data;
+          }
+          owlPlayers.push(obj);
       })
-    }
-    return team
+    checkTeam.players = owlPlayers;
+    return checkTeam
   }
+
 
   render() {
     return (
@@ -72,10 +91,13 @@ class Full extends Component {
         <div className="App-intro">
           <main className="main">            
             <div className="container">
+            <BlockUi tag="div" blocking={this.state.blocking}>
               <Switch>
+                <Route path="/twitch" name="Twitch" component={Twitch}/>
                 <Route path="/team" name="Team" component={Team}/>
                 <Route path="/" name="Home" component={Home}/>
               </Switch>
+            </BlockUi>
             </div>
           </main>
         </div>
@@ -88,6 +110,7 @@ class Full extends Component {
 const mapStateToProps = (state, ownProps) => (
   {
     ...ownProps,
+    teams: state.teams
   })
   
   const mapDispatchToProps = (dispatch, ownProps) => ({

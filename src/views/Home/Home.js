@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 
 import TeamCards from '../../components/TeamCards'
 class Home extends Component {
+
   
+  componentWillReceiveProps(nextProps){
+      console.log(nextProps)
+  }
+
   render() {
     return (
         <div className="col-md-12 mt-5">

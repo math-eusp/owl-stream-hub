@@ -5,6 +5,12 @@
   -webkit-transition: all 1.5s;
   -o-transition: all 1.5s;
   transition: all 1.5s;
+  overflow: hidden;
+  opacity: 1;
+  -webkit-transition: all 0.7s;
+  -o-transition: all 0.7s;
+  transition: all 0.7s;
+  border:3px solid rgba(0,0,0,0);
 }
 
 .player-headshot{
@@ -103,7 +109,7 @@
   display: inline-block;
 }
 
-.player-card:hover{
+.player-card:hover > .player-headshot{
   cursor: pointer;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
