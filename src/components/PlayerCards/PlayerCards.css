@@ -1,6 +1,6 @@
 .player-card{
-  height:200px;
-  width: 180px;
+  height:250px;
+  width: 150px;
   position: relative;
   -webkit-transition: all 1.5s;
   -o-transition: all 1.5s;
@@ -15,11 +15,11 @@
 
 .player-headshot{
   height:200px;
-  width: 180px;
+  width: 150px;
   background-repeat: no-repeat;
   background-position: center 20%;
   background-color: rgba(0,0,0,0.9);
-  background-size: 80%;
+  background-size: 90%;
 }
 
 .player-data{
@@ -28,72 +28,10 @@
   left:0;
   right:0;
   background-color: #d0d0d0;
-  height:32%;
+  height:40%;
 }
 
-@media screen and (max-width: 780px) {
 
-.team-name{
-  font-size: 1.9em !important;
-  display: block !important; 
-  width: 100%;
-  text-align: center;
-}
-
-.stream-data{
-  display: none;
-}
-
-  .player-card { 
-      background-repeat: no-repeat;
-      background-position: center 10%;
-      height:60px;
-      width: 100% !important;
-      margin-left:auto;
-      margin-right:auto;
-      position: relative;
-  }
-
-  .player-data{
-      position: absolute;
-      bottom:0;
-      left:0;
-      right:0;
-      background-color: #d0d0d0;
-      height:100%;
-      border: none !important;
-  }
-
-  .player-card h3{
-      font-size: 100%;
-  }
-
-  .player-card:hover{
-      cursor: pointer;
-      -webkit-transform: none !important;
-          -ms-transform: none !important;
-              transform: none !important;
-  }
-
-  .playerRole{
-      display: none !important;
-  }
-
-  .card-player-section span, .card-player-section-live span{
-      font-size: 100% !important;
-      display: block !important;
-  }
-
-  .team-img{
-     height: 50px !important;
-     margin-top:10px !important;
-  }
-
-  .test{
-      font-size: 100% !important;
-  }
-
-}
 
 .player-name{
   position: absolute;
@@ -256,3 +194,151 @@ span{
 .player-name-font{
   font-size: x-large;
 }
+
+
+@media screen and (max-width: 1024px) {
+
+  .team-name{
+    font-size: 1.9em !important;
+    display: block !important; 
+    width: 100%;
+    text-align: center;
+  }
+  
+  .stream-data{
+    display: none;
+  }
+  
+    .player-card { 
+        background-repeat: no-repeat;
+        background-position: center 10%;
+        height:250px;
+        width: 100% !important;
+        margin-left:auto;
+        margin-right:auto;
+        position: relative;
+    }
+
+    .player-headshot{
+      height:200px;
+      width: 100% !important;
+      background-repeat: no-repeat;
+      background-position: center 20%;
+      background-color: rgba(0,0,0,0.9);
+      background-size: 100%;
+    }
+  
+    .player-data{
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        background-color: #d0d0d0;
+        height:40%;
+        border: none !important;
+    }
+  
+    .player-card h3{
+        font-size: 100%;
+    }
+  
+    .player-card:hover{
+        cursor: pointer;
+        -webkit-transform: none !important;
+            -ms-transform: none !important;
+                transform: none !important;
+    }
+  
+    .playerRole{
+        display: none !important;
+    }
+  
+    .card-player-section span, .card-player-section-live span{
+        font-size: 100% !important;
+        display: block !important;
+    }
+  
+    .team-img{
+       height: 50px !important;
+       margin-top:10px !important;
+    }
+  
+    .test{
+        font-size: 100% !important;
+    }
+  
+  }
+
+
+  @media screen and (max-width: 450px) {
+
+    .team-name{
+      font-size: 1.9em !important;
+      display: block !important; 
+      width: 100%;
+      text-align: center;
+    }
+    
+    .stream-data{
+      display: none;
+    }
+    
+      .player-card { 
+          background-repeat: no-repeat;
+          background-position: center 10%;
+          height:280px;
+          width: 100% !important;
+          margin-left:auto;
+          margin-right:auto;
+          position: relative;
+      }
+  
+      .player-headshot{
+        height:200px;
+        width: 100% !important;
+        background-repeat: no-repeat;
+        background-position: center 20%;
+        background-color: rgba(0,0,0,0.9);
+        background-size: 65%;
+      }
+    
+      .player-data{
+          position: absolute;
+          bottom:0;
+          left:0;
+          right:0;
+          background-color: #d0d0d0;
+          height:40%;
+          border: none !important;
+      }
+    
+      .player-card h3{
+          font-size: 100%;
+      }
+    
+      .player-card:hover{
+          cursor: pointer;
+          -webkit-transform: none !important;
+              -ms-transform: none !important;
+                  transform: none !important;
+      }
+    
+      .playerRole{
+          display: none !important;
+      }
+    
+      .card-player-section span, .card-player-section-live span{
+          font-size: 100% !important;
+          display: block !important;
+      }
+    
+      .team-img{
+         height: 50px !important;
+         margin-top:10px !important;
+      }
+    
+      .test{
+          font-size: 100% !important;
+      }
+    
+    }

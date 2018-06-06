@@ -8,7 +8,7 @@ export default function reducer(state = {}, action = {}) {
         case 'UPDATE_TEAM':
           return {
             teams: state.teams.map(team => {
-                return team.id == action.team.id ? action.team : team
+                return team.id === action.team.id ? action.team : team
             })
           }
         default:

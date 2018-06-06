@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as _ from 'lodash';
 import './PlayerCards.css';
 
 class PlayerCards extends Component {
@@ -21,7 +20,7 @@ class PlayerCards extends Component {
   render() {
     let grayscale = 100;
     let color = 'red';
-    if(this.state.status != 'Offline'){
+    if(this.state.status !== 'Offline'){
         grayscale = 0;
         color = 'green';
     }
@@ -36,7 +35,14 @@ class PlayerCards extends Component {
                             <div className="player-name-font" style={{color: teamColor, filter: 'brightness(50%)'}}>
                                 {this.props.player.name}
                             </div>
-                            <span style={{color}}>{this.state.status}</span>
+                            <div className="row">
+                                <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <span style={{color: teamColor, filter: 'brightness(20%)'}}>{this.props.player.role}</span>
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <span style={{color}}>{this.state.status}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

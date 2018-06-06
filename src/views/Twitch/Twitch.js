@@ -17,7 +17,7 @@ class Twitch extends Component {
 
   componentWillReceiveProps(nextProps){
     this.props = nextProps
-    let team = _.find(this.props.teams, team => { console.log(this.state.id,team.id); return team.id == this.state.id })
+    let team = _.find(this.props.teams, team => { console.log(this.state.id,team.id); return team.id === this.state.id })
     this.setState({
       team
     })
@@ -26,7 +26,7 @@ class Twitch extends Component {
   render() {
     return (
         <div className="col-md-12 mt-5">
-          <img src={this.state.team ? this.state.team.logo : ''}  className="img-fluid" style={{width: '20%'}}/>
+          <img src={this.state.team ? this.state.team.logo : ''} alt="team-logo" className="img-fluid" style={{width: '20%'}}/>
           <div className="row">
           {this.state.team && this.state.team.players.map((obj,index) => {
               return <PlayerCards key={index} player={obj.player} team={this.state.team}/>

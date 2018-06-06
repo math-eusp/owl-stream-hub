@@ -26,3 +26,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.owl-team-logo {
+  padding: 5px;
+  border: 1px solid black;
+  background: #ddd;
+  border-radius: 10px;
+  width: 100%;
+}
